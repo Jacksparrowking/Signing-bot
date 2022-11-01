@@ -9,38 +9,6 @@ from selenium.webdriver.common.keys import Keys
 from twilio.rest import Client
 import random
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 PASSWORD = "Xoanukhef.1!"
 
 
@@ -82,7 +50,6 @@ def hashlama(driver):
     if sent_deep_learning_sms:
         return False
 
-
     soup = BeautifulSoup(driver.page_source, 'html.parser')
     deep_learning = ''
     for course in soup.findAll(name="tr", id="ContentPlaceHolder1_gvLinkToLessons"):
@@ -94,10 +61,12 @@ def hashlama(driver):
 
     array = deep_learning.findAll(name="td")
     check = array[0]
+    print("test")
     if check.find(name="input"):
         print(type(check))
         inner_input = check.select(selector="td .ShortCutImage")[0]
         input_id = inner_input.get("id")
+
         if input_id:
             click_id = driver.find_element(By.ID, input_id)
             click_id.click()
@@ -109,6 +78,7 @@ def hashlama(driver):
 
 
 def refresh(driver):
+    print("test_2")
     first_part_refresh = driver.find_element(By.ID, 'ContentPlaceHolder1_gvBalance_lblBalanceName_10')
     first_part_refresh.click()
 
@@ -156,8 +126,18 @@ def update_sms():
 
 
 def main():
+    options = webdriver.ChromeOptions()
+    options.add_argument('headless')
+    options.add_experimental_option('excludeSwitches', ['enable-logging'])
+    options.add_argument("--disable-infobars")
+    options.add_argument("--disable-logging")
+    options.add_argument("--disable-login-animations")
+    options.add_argument("--disable-notifications")
+    options.add_argument("--disable-default-apps")
+    options.add_argument("--log-level=3")
+
     chrome_path = "/usr/bin/chromedriver"
-    driver = webdriver.Chrome(executable_path=chrome_path)
+    driver = webdriver.Chrome(executable_path=chrome_path, options=options)
     driver.get("https://inbar.biu.ac.il/live/Login.aspx")
     login(driver)
     registration(driver)
