@@ -9,7 +9,7 @@ from selenium.webdriver.common.keys import Keys
 from twilio.rest import Client
 import random
 
-PASSWORD = "Xoanukhef.1!"
+PASSWORD = "your_password"
 
 
 def login(driver):
