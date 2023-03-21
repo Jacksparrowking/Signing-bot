@@ -14,7 +14,7 @@ PASSWORD = "your_password"
 
 def login(driver):
     id_ = driver.find_element(By.NAME, "edtUsername")
-    id_.send_keys("316550961")
+    id_.send_keys("your id")
 
     password_ = driver.find_element(By.NAME, "edtPassword")
     password_.send_keys(PASSWORD)
@@ -121,7 +121,7 @@ def update_sms():
     message = client.messages.create(
         body="signed to course successfully.",
         from_="+15617695685",
-        to="+972537251344"
+        to="+your phone number"
     )
 
 
